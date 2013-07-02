@@ -1,7 +1,7 @@
 import math
 
 class particle:
-	def __init__(self, energy=0):
+	def __init__(self, energy=50):
 		self.speed = 1
 		self.x = 50
 		self.y = 50
@@ -28,7 +28,7 @@ class particle:
 			
 	def metabolism(self):
 		self.metabolism_count += 1
-		if self.metabolism_count > 5:
+		if self.metabolism_count > 3:
 			self.energy -= 1
 			self.calcspeed()
 			self.metabolism_count = 0
@@ -71,7 +71,7 @@ class particle:
 		return particle(50)
 	
 	def calcspeed(self):
-		self.speed = self.energy / 20
+		self.speed = self.energy / 60
 		if self.speed < 1:
 			self.speed = 1
 

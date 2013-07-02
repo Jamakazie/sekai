@@ -1,3 +1,4 @@
+import time
 import random
 import math
 import sys
@@ -12,10 +13,14 @@ class Sim:
 		self.part.append(particle.particle())
 		
 	def step(self):
-		if random.randint(0,1000) > 500:
+		if random.randint(0,1000) > 700:
 			self.resources.add_resource(self.size)
 		if self.resources.has_res():
 			for part in self.part:
+				if part.energy < 0:
+					print(str(part) + "\tDied!")
+					self.part.remove(part)
+					continue
 				if self.resources.has_res() == False:
 					continue
 				if part.is_chasing == False:
@@ -44,4 +49,6 @@ while True:
 	sim.step()
 	print('\n' * 100)
 	print sim
-	sys.stdin.read(1)
+	time.sleep(.05)
+
+	#sys.stdin.read(1)
